@@ -1,0 +1,114 @@
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+#include "bitmap.h" 
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+
+#define OLED_RESET     -1 
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+
+void bootOS() {
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  
+  display.println("ROM BI0S (C) 1996"); delay(500); display.display();
+  display.println("RAM OK.. 640KB"); delay(400); display.display();
+  display.println("LOADING KASH_OS_v1.0"); delay(600); display.display();
+  display.println("DRIVES READY..."); delay(500); display.display();
+  display.println("BOOTING SUCCESSFUL."); delay(800); display.display();
+  
+  delay(1000);
+}
+
+
+void showThinkingAnimation() {
+ 
+  for(int loopCount = 0; loopCount < 6; loopCount++) {
+    display.clearDisplay();
+    display.setCursor(0, 20);
+    display.setTextSize(2); // ටිකක් ලොකුවට පේන්න
+    display.print("Thinking"); display.display(); delay(400);
+    display.print("."); display.display(); delay(400);
+    display.print("."); display.display(); delay(400);
+    display.print("."); display.display(); delay(400);
+  }
+}
+
+
+void typeText(String message, int speedDelay) {
+  for (int i = 0; i < message.length(); i++) {
+    display.print(message[i]);
+    display.display();
+    delay(speedDelay);
+  }
+}
+
+
+void drawCake() {
+  
+  display.fillRect(90, 45, 30, 15, WHITE); 
+  display.fillRect(95, 35, 20, 10, WHITE); 
+  
+ )
+  display.fillRect(98, 25, 2, 10, WHITE);  
+  display.fillRect(104, 25, 2, 10, WHITE); 
+  display.fillRect(110, 25, 2, 10, WHITE); 
+  
+  
+  display.drawPixel(98, 22, WHITE);
+  display.drawPixel(104, 22, WHITE);
+  display.drawPixel(110, 22, WHITE);
+  
+  display.display();
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); 
+  }
+
+  
+  bootOS();
+  
+ 
+  showThinkingAnimation();
+
+  // ANIMATION 3: Poet එක ටයිප් වීම
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setCursor(0, 0);
+  
+  
+  typeText("Happy birthday kash\n", 80); delay(500);
+  typeText("To my Moon...\n", 80); delay(500);
+  typeText("Amidst a million stars\n", 80); delay(500);
+  typeText("my eyes always\n", 80); delay(500);
+  typeText("find you\n", 80); delay(500);
+  typeText("Love you 3000! <3", 80);
+  
+  delay(5000); 
+
+  
+  display.clearDisplay();
+  
+  
+  display.drawBitmap(0, 0, my_image, 128, 64, WHITE);
+  
+  
+  
+  drawCake();
+}
+
+void loop() {
+  // හැමදේම ඉවර වෙලා අවසාන Screen එක දිගටම පේන්න තියෙනවා
+}
