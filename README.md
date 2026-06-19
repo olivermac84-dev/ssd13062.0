@@ -1,4 +1,4 @@
-support board = esp32 c3 dev board 
+support board = esp32 c3 dev board/ NODEMCU boards 
 
 wring diagram 
 SDA ----------------GPIO8
