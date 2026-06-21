@@ -83,7 +83,7 @@ void setup() {
  
   showThinkingAnimation();
 
-  // ANIMATION 3: Poet එක ටයිප් වීම
+  
   display.clearDisplay();
   display.setTextSize(1);
   display.setCursor(0, 0);
@@ -110,5 +110,5 @@ void setup() {
 }
 
 void loop() {
-  // හැමදේම ඉවර වෙලා අවසාන Screen එක දිගටම පේන්න තියෙනවා
+  
 }
